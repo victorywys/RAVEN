@@ -1,0 +1,11 @@
+*.pyc
+*screen*
+*raw_data*
+*sum*
+*res*
+*.out
+*.nfs*
+*vars.txt*
+*.txt*
+*.log*
+*.bak
