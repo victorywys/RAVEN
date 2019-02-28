@@ -12,8 +12,6 @@ import mmsdk.mmdatasdk.dataset.standard_datasets.CMU_MOSI.cmu_mosi_std_folds as 
 
 from consts import global_consts as gc
 
-from MOSI_data_loader import load_word_level_features
-
 def mid(a):
     return (a[0] + a[1]) / 2.0
 

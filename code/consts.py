@@ -24,8 +24,8 @@ class global_consts():
 
     no_sp = True
 
-    batch_size = 10
-    epoch_num = 100
+    batch_size = 20
+    epoch_num = 500
     learning_rate = 0.001
 
     padding_len = 50
@@ -37,9 +37,9 @@ class global_consts():
 
     dropProb = 0.2
 
-    cellDim = 100
-    normDim = 300
-    hiddenDim = 150
+    cellDim = 150
+    normDim = 150
+    hiddenDim = 300
 
     device = None
 
