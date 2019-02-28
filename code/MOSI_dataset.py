@@ -46,7 +46,6 @@ class MOSIDataset(Data.Dataset):
             self.dataset = MOSIDataset.testset
         elif self.cls == "valid":
             self.dataset = MOSIDataset.validset
-        self.dataset = MOSIDataset.testset
 
         self.covarepInput = self.dataset.covarepInput[:]
         self.covarepLength = self.dataset.covarepLength[:]

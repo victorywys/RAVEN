@@ -302,7 +302,6 @@ def train_model(arg_dict):
             optimizer.zero_grad()
 
             outputs = net(words, covarep, covarepLen, facet, facetLen, inputLen)
-            print outputs
             if gc.dataset == "iemocap":
                 for l in torch.ge(outputs, 0).to(torch.long):
                     output_all.append(l)
@@ -355,9 +354,6 @@ def train_model(arg_dict):
                 if train_acc > gc.max_train_acc:
                     gc.max_train_acc = train_acc
         elif gc.dataset == "MOSI":
-            print "tot_err: ", tot_err
-            print "tot_right: ", tot_right
-            print "tot_num: ", tot_num
             train_mae = tot_err / tot_num
             train_acc = float(tot_right) / tot_num
             print "\ttrain mean error: %f" % train_mae
