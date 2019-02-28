@@ -1,7 +1,7 @@
 # RAVEN
 
 ### Notice
-- We have rewrite our dataloader for MOSI in new CMU-Multimodal SDK (see [https://github.com/A2Zadeh/CMU-MultimodalSDK]). However, we haven't found the best hyperparameters on this new kind of data. And it seems to have some bugs in the dataloader. We are trying to solve that. Thank you for your patiences!
+- We have rewrite our dataloader for MOSI in new CMU-Multimodal SDK (see https://github.com/A2Zadeh/CMU-MultimodalSDK). However, we haven't found the best hyperparameters on this new kind of data. And it seems to have some bugs in the dataloader. We are trying to solve that. Thank you for your patiences!
 
 ### File description
 
