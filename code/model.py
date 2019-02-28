@@ -1,5 +1,7 @@
 from consts import global_consts as gc
 
+import numpy as np
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -12,13 +14,13 @@ class Net(nn.Module):
         features = 0
         input_size = 0
 
-        self.normcovarep = nn.BatchNorm2d(gc.padding_len)
+        self.normcovarep = nn.BatchNorm2d(gc.padding_len, track_running_stats=False)
         self.dropcovarep = nn.Dropout(p=gc.dropProb)
         self.fc_rszcovarep = nn.Linear(gc.covarepDim, gc.normDim)
         self.covarepLSTM = nn.LSTM(gc.normDim, gc.cellDim)
         self.covarepW = nn.Linear(gc.cellDim + gc.wordDim, 1)
 
-        self.normFacet = nn.BatchNorm2d(gc.padding_len)
+        self.normFacet = nn.BatchNorm2d(gc.padding_len, track_running_stats=False)
         self.dropFacet = nn.Dropout(p=gc.dropProb)
         self.fc_rszFacet = nn.Linear(gc.facetDim, gc.normDim)
         self.facetLSTM = nn.LSTM(gc.normDim, gc.cellDim)
@@ -39,7 +41,6 @@ class Net(nn.Module):
     def forward(self, words, covarep, covarepLens, facet, facetLens, inputLens):
         batch = covarep.size()[0]
         inputs = None
-
         covarep = self.normcovarep(covarep)
         covarepInput = self.fc_rszcovarep(self.dropcovarep(covarep))
         covarepFlat = covarepInput.data.contiguous().view(-1, gc.shift_padding_len, gc.normDim)
@@ -49,7 +50,7 @@ class Net(nn.Module):
         covarepSelector = torch.zeros(batch * gc.padding_len, 1, gc.shift_padding_len + 1).to(gc.device).scatter_(2, covarepLensFlat.unsqueeze(1).unsqueeze(1), 1.0)
         covarepState = torch.matmul(covarepSelector, output).squeeze()
 
-        facet = self.normFacet(facet)
+        #facet = self.normFacet(facet)
         facetInput = self.fc_rszFacet(self.dropFacet(facet))
         facetFlat = facetInput.data.contiguous().view(-1, gc.shift_padding_len, gc.normDim)
         output, _ = self.facetLSTM(facetFlat)

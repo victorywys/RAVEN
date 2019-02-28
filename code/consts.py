@@ -1,4 +1,6 @@
 class global_consts():
+    debug = False
+
     platform = "server"
     cuda = 1
 
@@ -6,7 +8,7 @@ class global_consts():
     data_path = None
     raw_path = None
     if dataset == "MOSI":
-        data_path = "/media/bighdd5/Paul/mosi/"
+        data_path = "/home/data/wangyansen/cmumosi/"
     elif dataset == "iemocap":
         data_path = "/media/bighdd7/yansen/code/tools/iemocap/"
         raw_path =  "/media/bighdd4/Paul/mosi2/experiments/iemocap/"
@@ -29,7 +31,7 @@ class global_consts():
     padding_len = 50
 
     shift = True
-    sub_freq = 10
+    sub_freq = 20
     shift_padding_len = 20
     shift_weight = 0.2
 
