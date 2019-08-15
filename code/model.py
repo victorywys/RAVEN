@@ -17,13 +17,13 @@ class Net(nn.Module):
         self.normcovarep = nn.BatchNorm2d(gc.padding_len, track_running_stats=False)
         self.dropcovarep = nn.Dropout(p=gc.dropProb)
         self.fc_rszcovarep = nn.Linear(gc.covarepDim, gc.normDim)
-        self.covarepLSTM = nn.LSTM(gc.normDim, gc.cellDim)
+        self.covarepLSTM = nn.LSTM(gc.normDim, gc.cellDim, batch_first = True)
         self.covarepW = nn.Linear(gc.cellDim + gc.wordDim, 1)
 
         self.normFacet = nn.BatchNorm2d(gc.padding_len, track_running_stats=False)
         self.dropFacet = nn.Dropout(p=gc.dropProb)
         self.fc_rszFacet = nn.Linear(gc.facetDim, gc.normDim)
-        self.facetLSTM = nn.LSTM(gc.normDim, gc.cellDim)
+        self.facetLSTM = nn.LSTM(gc.normDim, gc.cellDim, batch_first = True)
         self.facetW = nn.Linear(gc.cellDim + gc.wordDim, 1)
 
         self.calcAddon = nn.Linear(2 * gc.cellDim, gc.wordDim)

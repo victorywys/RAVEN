@@ -181,6 +181,7 @@ class MOSIDataset(Data.Dataset):
                 while end < len(self.facetInterval[i]) and mid(self.facetInterval[i][end]) < self.wordInterval[i][j][1]:
                     if mid(self.facetInterval[i][end]) < startTime + timescale:
                         tempV = tempV + self.facetList[i][end]
+                        num += 1
                     else:
                         if num > 0:
                             facetV.append(tempV / num)
@@ -215,6 +216,7 @@ class MOSIDataset(Data.Dataset):
                 while end < len(self.covarepInterval[i]) and mid(self.covarepInterval[i][end]) < self.wordInterval[i][j][1]:
                     if mid(self.covarepInterval[i][end]) < startTime + timescale:
                         tempV = tempV + self.covarepList[i][end]
+                        num += 1
                     else:
                         if num > 0:
                             covarepV.append(tempV / num)
